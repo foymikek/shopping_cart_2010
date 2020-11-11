@@ -18,4 +18,10 @@ class Vendor
     @inventory[item_obj] += amount_int
   end
 
+  def potential_revenue
+    @inventory.sum do |item_obj, amount_int|
+      item_obj.price * amount_int
+    end
+  end
+
 end
