@@ -5,4 +5,8 @@ class Market
     @name = name
     @vendors = []
   end
+
+  def add_vendor(vendor_obj)
+    @vendors << vendor_obj
+  end
 end
