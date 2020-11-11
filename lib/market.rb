@@ -21,4 +21,17 @@ class Market
       vendor.inventory.keys.include?(item_obj)
     end
   end
+
+  def total_inventory
+    breakdown = Hash.new {|hash, key| hash[key] = {:quantity => 0, :vendors => []}}
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item_obj, amount_int|
+        breakdown[item_obj][:quantity] += amount_int
+        breakdown[item_obj][:vendors] << vendor
+      end
+    end
+    breakdown
+  end
+
+
 end
