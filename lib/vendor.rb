@@ -3,7 +3,7 @@ class Vendor
 
   def initialize(name)
     @name = name
-    @inventory = {}
+    @inventory = Hash.new {|hash, key| hash[key] = 0}
   end
 
   def check_stock(item_obj)
@@ -12,6 +12,10 @@ class Vendor
     else
       @inventory[item_obj]
     end
+  end
+
+  def stock(item_obj, amount_int)
+    @inventory[item_obj] += amount_int
   end
 
 end
