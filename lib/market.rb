@@ -33,14 +33,20 @@ class Market
     breakdown
   end
 
-# An item is overstocked if it is sold by more than 1 vendor AND
-# the total quantity is greater than 50.
   def overstocked_items
     overstocked = []
     total_inventory.each do |item_obj, info_hash|
       overstocked << item_obj if (info_hash[:quantity] > 50 && info_hash[:vendors].count > 1)
     end
     overstocked
+  end
+
+  def sorted_item_list
+    @vendors.flat_map do |vendor|
+      vendor.inventory.keys.map do |item_obj|
+        item_obj.name
+      end
+    end.uniq.sort
   end
 
 
