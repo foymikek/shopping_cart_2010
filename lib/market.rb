@@ -12,7 +12,13 @@ class Market
 
   def vendor_names
     @vendors.map do |vendor|
-      vendor.name 
+      vendor.name
+    end
+  end
+
+  def vendors_that_sell(item_obj)
+    @vendors.find_all do |vendor|
+      vendor.inventory.keys.include?(item_obj)
     end
   end
 end
